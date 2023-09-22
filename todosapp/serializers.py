@@ -52,20 +52,20 @@ class TodoSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-    def to_representation(self, instance):
-        # Use Humps to convert field names from snake_case to camelCase
-        data = super().to_representation(instance)
-        camelized_data = humps.camelize(data)  # Convert to camelCase
+    # def to_representation(self, instance):
+    #     # Use Humps to convert field names from snake_case to camelCase
+    #     data = super().to_representation(instance)
+    #     camelized_data = humps.camelize(data)  # Convert to camelCase
 
-        # wrap data to data key in json
-        return {"data": camelized_data}
+    #     # wrap data to data key in json
+    #     return {"data": camelized_data}
 
-    def to_internal_value(self, data):
+    # def to_internal_value(self, data):
 
-        # handle if data key provided in json request
-        if "data" in data:
-            data = data["data"]
+    #     # handle if data key provided in json request
+    #     if "data" in data:
+    #         data = data["data"]
 
-        # decamelize the field names to snake_case in the internal value
-        decamelized_data = humps.decamelize(data)
-        return super().to_internal_value(decamelized_data)
+    #     # decamelize the field names to snake_case in the internal value
+    #     decamelized_data = humps.decamelize(data)
+    #     return super().to_internal_value(decamelized_data)

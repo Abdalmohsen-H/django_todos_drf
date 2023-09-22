@@ -128,3 +128,17 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CSRF_TRUSTED_ORIGINS = ["http://localhost"]
 
 # AUTH_USER_MODEL = "accounts.MyUser"
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'todosapp.renderers.CamelCaseJSONRenderer',  # custom renderer
+        'rest_framework.renderers.JSONRenderer',  # Ensure JSONRenderer is included
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+
+    'DEFAULT_PARSER_CLASSES': [
+        'todosapp.parsers.CustomJSONParser',
+        'rest_framework.parsers.JSONParser',
+    ],
+
+}
